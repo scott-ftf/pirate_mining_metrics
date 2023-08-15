@@ -14,7 +14,7 @@ from sklearn.preprocessing import StandardScaler
 from reportlab.lib.pagesizes import letter, landscape
 from reportlab.lib.units import inch
 from reportlab.lib.styles import getSampleStyleSheet
-from reportlab.platypus import SimpleDocTemplate, Paragraph, PageBreak, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Paragraph, PageBreak, Table, TableStyle, Image
 from reportlab.lib.styles import ParagraphStyle
 from PIL import Image as pil_image
 
@@ -236,16 +236,6 @@ def correlation_chart(df):
   plt.savefig(output_path + 'scatterplot_block_size_transactions.png')
   plt.close()
 
-# Block Size & Transaction Relationship
-def size_tx_relationship_chart(df):
-  plt.figure(figsize=(12, 6))
-  avg_transaction_per_block_size = df.groupby('size')['transaction'].mean().reset_index()
-  sns.scatterplot(data=avg_transaction_per_block_size, x='size', y='transaction')
-  plt.title("Average Number of Transactions per Block Size")
-  plt.tight_layout()
-  plt.savefig(output_path + 'avg_transactions_per_block_size.png')
-  plt.close()
-
 # Time Series Analysis of Difficulty
 def difficulty_chart(df):
   plt.figure(figsize=(12, 6))
@@ -312,8 +302,6 @@ def generate_charts(df):
   print("Generating Transaction Correlation Chart")
   correlation_chart(df)
 
-  print("Generating Transaction Relationship Chart")
-  size_tx_relationship_chart(df)
 
   print("Generating Difficulty Chart")
   difficulty_chart(df)
@@ -484,7 +472,9 @@ def main():
   print("Generating charts...") 
   generate_charts(df)
 
+  # Generate a report utilizing all chart images and statitics
   create_pdf_report()
+
   # fi
   print("Work complete, cleaning up.") 
   # Delete the directory and its contents
