@@ -1,4 +1,4 @@
-This script interacts with the Pirate Chain daemon RPC to scrape statistical data from a set of blocks to save in a parquet database file for running statitical annlytics on. At the end, it produces a pdf report.
+This script interacts with the Pirate Chain daemon RPC to extract statistical data from a set of blocks. This data is then saved in a Parquet database file for subsequent statistical analysis. At the end, the script generates a PDF report.
 
 A example report can be found here: <br />
 https://github.com/scott-ftf/pirate_mining_metrics/blob/main/pirate_miner_metrics_report.pdf
